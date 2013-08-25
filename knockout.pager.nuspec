@@ -2,7 +2,7 @@
 <package>
 	<metadata>
 		<id>knockout.pager</id>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 		<authors>Nathan J. Robinson</authors>
 		<licenseUrl>https://github.com/nathanrobinson/knockout.pager/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/nathanrobinson/knockout.pager/</projectUrl>
