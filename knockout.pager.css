@@ -1,0 +1,59 @@
+div.pager {
+    padding: 3px;
+    text-align: right;
+}
+
+a.pager-button, a.pager-button:before, a.pager-button:after {
+    cursor: pointer;
+}
+
+div.pager a.selected, div.pager a.selected:hover, div.pager a.selected:active {
+    color: #dfd;
+    background: #666;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666', endColorstr='#333', GradientType=0 );
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #666), color-stop(90%, #333));
+    background-image: -webkit-linear-gradient(top, #666 20%, #333 90%);
+    background-image: -moz-linear-gradient(top, #666 20%, #333 90%);
+    background-image: -o-linear-gradient(top, #666 20%, #333 90%);
+    background-image: linear-gradient(#666 20%, #333 90%);
+}
+div.pager a.disabled, div.pager a.disabled:hover, div.pager a.disabled:active
+{
+    color: #666;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 2px;
+    padding: 1px 3px;
+    background: #eee;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee', endColorstr='#ddd', GradientType=0 );
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #eee), color-stop(90%, #ddd));
+    background-image: -webkit-linear-gradient(top, #eee 20%, #ddd 90%);
+    background-image: -moz-linear-gradient(top, #eee 20%, #ddd 90%);
+    background-image: -o-linear-gradient(top, #eee 20%, #ddd 90%);
+    background-image: linear-gradient(#eee 20%, #ddd 90%);
+}
+div.pager a
+{
+    color: black;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 2px;
+    padding: 1px 3px;
+    background: #eee;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee', endColorstr='#ccc', GradientType=0 );
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #eee), color-stop(90%, #ccc));
+    background-image: -webkit-linear-gradient(top, #eee 20%, #ccc 90%);
+    background-image: -moz-linear-gradient(top, #eee 20%, #ccc 90%);
+    background-image: -o-linear-gradient(top, #eee 20%, #ccc 90%);
+    background-image: linear-gradient(#eee 20%, #ccc 90%);
+}
+div.pager a:hover, div.pager a:active
+{
+    background: #ccc;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccc', endColorstr='#eee', GradientType=0 );
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #ccc), color-stop(90%, #eee));
+    background-image: -webkit-linear-gradient(top, #ccc 20%, #eee 90%);
+    background-image: -moz-linear-gradient(top, #ccc 20%, #eee 90%);
+    background-image: -o-linear-gradient(top, #ccc 20%, #eee 90%);
+    background-image: linear-gradient(#ccc 20%, #eee 90%);
+}
