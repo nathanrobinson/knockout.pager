@@ -12,7 +12,7 @@
 		<tags>knockout paged paging pager template html javascript</tags>
 	</metadata>
 	<files>
-		<file src="knockout.pager.js" target="Scripts" />
-		<file src="knockout.pager.css" target="Content" />
+		<file src="knockout.pager.js" target="Content/Scripts" />
+		<file src="knockout.pager.css" target="Content/Content" />
 	</files>
 </package>
