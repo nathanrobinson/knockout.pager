@@ -10,12 +10,12 @@
 		<description>A paged foreach binding for knockout</description>
 		<releaseNotes></releaseNotes>
 		<tags>knockout paged paging pager template html javascript</tags>
+		<dependencies>
+   			<group>
+				<dependency id="knockoutjs" />
+			</group>
+		</dependencies>
 	</metadata>
-	<dependencies>
-   		<group>
-			<dependency id="knockoutjs" />
-		</group>
-	</dependencies>
 	<files>
 		<file src="knockout.pager.js" target="Content/Scripts" />
 		<file src="knockout.pager.css" target="Content/Content" />
