@@ -6,7 +6,7 @@
           
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
             
-            QUnit.equal(pager.pagedItems(), [], "paged items");
+            QUnit.deepEqual(pager.pagedItems(), [], "paged items");
         });
     });
 }(jQuery, ko));
