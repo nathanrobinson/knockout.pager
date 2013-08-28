@@ -3,6 +3,11 @@ div.pager {
     text-align: right;
 }
 
+div.pager-size {
+    padding: 3px;
+    text-align: left;
+}
+
 a.pager-button, a.pager-button:before, a.pager-button:after {
     cursor: pointer;
 }
