@@ -48,8 +48,8 @@
             expect(2);
             var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
             observableArray(array);
-            QUnit.deepEqual(pager.pagedItems(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "paged items");
-            QUnit.deepEqual(pager.relativePages(), [1, 2, 3, 4, 5], "relativePages");
+            QUnit.deepEqual(pager.pagedItems(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "paged items");
+            QUnit.deepEqual(pager.relativePages(), [1, 2, 3], "relativePages");
         });
         test("page can update with multiple pages of data", function () {
             expect(2);
@@ -59,8 +59,9 @@
             QUnit.equal(pager.page(), 3, "page");
         });
         test("page cannot go past last page with multiple pages of data", function () {
-            expect(2);
+            expect(3);
             pager.page(1);
+            QUnit.equal(pager.page(), 1, "page");
             pager.page(4);
             QUnit.equal(pager.page(), 1, "page");
             pager.page(10);
