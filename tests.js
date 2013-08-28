@@ -4,7 +4,7 @@
         test("inital pages are empty", function () {
           var observableArray = ko.observableArray([]);
           
-            var pager = new ko.bindingHandlers.pagedForeach.Pager(new Object());
+            var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
             
             QUnit.equal(pager.pagedItems(), [], "paged items");
         });
