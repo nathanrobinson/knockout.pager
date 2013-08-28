@@ -93,9 +93,9 @@
             observableArray(array);
             expect(2);
             pager.page(4);
-            QUnit.equal(pager.page(), 1, "page");
+            QUnit.equal(pager.page(), 3, "page");
             pager.page(10);
-            QUnit.equal(pager.page(), 1, "page");
+            QUnit.equal(pager.page(), 3, "page");
         });
     });
 }(jQuery, ko));
