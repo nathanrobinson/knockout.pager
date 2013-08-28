@@ -24,9 +24,11 @@
             QUnit.deepEqual(pager.relativePages(), [], "relativePages");
         });
         test("pager updates with observableArray", function(){
+            expect(2);
             var array = [0, 1, 2, 3, 4, 5];
             observableArray(array);
             QUnit.deepEqual(pager.pagedItems(), array, "paged items");
+            QUnit.deepEqual(pager.relativePages(), [1], "relativePages");
         });
         test("page cannot go below 1", function () {
             expect(2);
