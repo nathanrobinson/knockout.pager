@@ -143,6 +143,10 @@
         test("first page button is disabled on page 1", function () {
             QUnit.equal($('#testBinding').find('.first-page-link').children('a').hasClass('disabled'), true, "page");
         });
+        test("can update page size to 25", function () {
+            viewModel.pageSize(25);
+            QUnit.equal($('#testBinding').find('tbody').children('tr').length, 25, "page");
+        });
         
     });
 }(jQuery, ko));
