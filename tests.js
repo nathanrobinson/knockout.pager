@@ -75,7 +75,7 @@
             var observableArray = ko.observableArray([0, 1, 2, 3, 4, 5]);
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
             expect(2);
-            QUnit.deepEqual(pager.relativePages(), [1], "paged items");
+            QUnit.deepEqual(pager.relativePages(), [1], "relativePages");
             var array = ko.utils.range(0, 25);
             observableArray(array);
             QUnit.deepEqual(pager.relativePages(), [1, 2, 3], "relativePages");
@@ -103,9 +103,9 @@
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
             expect(2);
             pager.page(5);
-            QUnit.equal(pager.relativePages(), [3, 4, 5, 6, 7], "page");
+            QUnit.equal(pager.relativePages(), [3, 4, 5, 6, 7], "relativePages");
             pager.page(11);
-            QUnit.equal(pager.relativePages(), [7, 8, 9, 10, 11], "page");
+            QUnit.equal(pager.relativePages(), [7, 8, 9, 10, 11], "relativePages");
         });
     });
 }(jQuery, ko));
