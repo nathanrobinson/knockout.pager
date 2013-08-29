@@ -6,7 +6,7 @@
         }
         var viewModel = { 
             observableArray: ko.observableArray(array),
-            pageSize: ko.obsrvable(10)
+            pageSize: ko.observable(10)
         };
         
         ko.applyBindings(viewModel, $('#testBinding')[0]);
