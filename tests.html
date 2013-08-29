@@ -21,6 +21,18 @@
 
     </head>
     <body>
+        <div id="testBinding">
+            <div data-bind="pageSize: observableArray"></div>
+            <table>
+                <thead>
+                    <tr><th>$index</th><th>Key</th><th>Value</th></tr>
+                </thead>
+                <tbody data-bind="pagedForeach: observableArray">
+                    <tr><td data-bind="text: $index"></td><td data-bind="text: key"></td><td data-bind="text: value"></td></tr>
+                </tbody>
+            </table>
+            <div data-bind="pageLinks: observableArray"></div>
+        </div>
         <h1 id="qunit-header">Unit Tests</h1>
         <h2 id="qunit-banner"></h2>
         <div id="qunit-testrunner-toolbar"></div>
