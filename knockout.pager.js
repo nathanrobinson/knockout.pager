@@ -39,13 +39,13 @@
     }
 
     function checkItemPerPageBinding(allBindings, pager){
-        if (allBindings['itemsPerPage']) {
-            if (ko.isObservable(allBindings['itemsPerPage'])) {
-                allBindings['itemsPerPage'].subscribe(function (newVal) {
+        if (allBindings['pageSize']) {
+            if (ko.isObservable(allBindings['pageSize'])) {
+                allBindings['pageSize'].subscribe(function (newVal) {
                     pager.itemsPerPage(newVal);
                 });
                 pager.itemsPerPage.subscribe(function (newVal) {
-                    allBindings['itemsPerPage'](newVal);
+                    allBindings['pageSize'](newVal);
                 });
             }
             else {
@@ -120,7 +120,7 @@
         }
     };
 
-    ko.bindingHandlers.pageSize = {
+    ko.bindingHandlers.pageSizeControl = {
         init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
             var observable = valueAccessor(), allBindings = allBindingsAccessor();
             defaultPagerIfEmpty(observable);
