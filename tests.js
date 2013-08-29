@@ -131,6 +131,18 @@
         test("pagedForeach binding adds 10 rows", function () {
             QUnit.equal($('#testBinding').find('tbody').children('tr').length, 10, "page");
         });
+        test("pageLinks adds first page button", function () {
+            QUnit.equal($('#testBinding').find('.first-page-link').children('a').length, 1, "page");
+        });
+        test("pageLinks adds last page button", function () {
+            QUnit.equal($('#testBinding').find('.last-page-link').children('a').length, 1, "page");
+        });
+        test("pageLinks adds page number buttons", function () {
+            QUnit.equal($('#testBinding').find('.pager-pages').children('.pager-page').children('a').length, 5, "page");
+        });
+        test("first page button is disabled on page 1", function () {
+            QUnit.equal($('#testBinding').find('.first-page-link').children('a').hasClass('disabled'), true, "page");
+        });
         
     });
 }(jQuery, ko));
