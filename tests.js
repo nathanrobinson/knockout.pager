@@ -4,7 +4,12 @@
         for(var c=1;c<1000;c++){
             array.push( { key: 'key_' + c, value: 'value ' + c } );
         }
-        ko.applyBindings({ observableArray: ko.observableArray(array) }, $('#testBinding')[0]);
+        var viewModel = { 
+            observableArray: ko.observableArray(array),
+            pageSize: ko.obsrvable(10)
+        };
+        
+        ko.applyBindings(viewModel, $('#testBinding')[0]);
         
         module("paging view model - empty initializer");
         
