@@ -143,9 +143,24 @@
         test("first page button is disabled on page 1", function () {
             QUnit.equal($('#testBinding').find('.first-page-link').children('a').hasClass('disabled'), true, "page");
         });
+        test("first page button is not disabled on other pages", function () {
+            viewModel.observableArray.pager.page(2);
+            QUnit.equal($('#testBinding').find('.first-page-link').children('a').hasClass('disabled'), false, "page");
+        });
         test("can update page size to 25", function () {
+            expect(2)
             viewModel.pageSize(25);
             QUnit.equal($('#testBinding').find('tbody').children('tr').length, 25, "page");
+            viewModel.pageSize(10);
+            QUnit.equal($('#testBinding').find('tbody').children('tr').length, 10, "page");
+        });
+        test("last page button is disabled on last page", function () {
+            viewModel.observableArray.pager.page(100);
+            QUnit.equal($('#testBinding').find('.last-page-link').children('a').hasClass('disabled'), true, "page");
+        });
+        test("last page button is not disabled on other pages", function () {
+            viewModel.observableArray.pager.page(99);
+            QUnit.equal($('#testBinding').find('.last-page-link').children('a').hasClass('disabled'), false, "page");
         });
         
     });
