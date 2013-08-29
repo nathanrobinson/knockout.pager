@@ -45,10 +45,8 @@
             QUnit.deepEqual(pager.relativePages(), [1], "relativePages");
         });
         test("page cannot go below 1", function () {
-            var observableArray = ko.observableArray([]);
+            var observableArray = ko.observableArray([0, 1, 2, 3, 4, 5]);
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
-            var array = [0, 1, 2, 3, 4, 5];
-            observableArray(array);
             expect(2);
             pager.page(0);
             QUnit.equal(pager.page(), 1, "page");
@@ -56,10 +54,8 @@
             QUnit.equal(pager.page(), 1, "page");
         });
         test("page cannot go past last page with single page of data", function () {
-            var observableArray = ko.observableArray([]);
+            var observableArray = ko.observableArray([0, 1, 2, 3, 4, 5]);
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
-            var array = [0, 1, 2, 3, 4, 5];
-            observableArray(array);
             expect(2);
             pager.page(2);
             QUnit.equal(pager.page(), 1, "page");
@@ -69,17 +65,24 @@
         test("pager updates with observableArray and only displays one page", function(){
             var observableArray = ko.observableArray([]);
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
-            var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+            var array = ko.utils.range(0,100);
             observableArray(array);
             expect(2);
             QUnit.deepEqual(pager.pagedItems(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "paged items");
+            QUnit.deepEqual(pager.relativePages(), [1, 2, 3, 4, 5], "relativePages");
+        });
+        test("relativePages only show available pages", function(){
+            var observableArray = ko.observableArray([0, 1, 2, 3, 4, 5]);
+            var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
+            expect(2);
+            QUnit.deepEqual(pager.relativePages(), [1], "paged items");
+            var array = ko.utils.range(0, 25);
+            observableArray(array);
             QUnit.deepEqual(pager.relativePages(), [1, 2, 3], "relativePages");
         });
         test("page can update with multiple pages of data", function () {
-            var observableArray = ko.observableArray([]);
+            var observableArray = ko.observableArray(ko.utils.range(0,100));
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
-            var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
-            observableArray(array);
             expect(2);
             pager.page(2);
             QUnit.equal(pager.page(), 2, "page");
@@ -87,15 +90,22 @@
             QUnit.equal(pager.page(), 3, "page");
         });
         test("page cannot go past last page with multiple pages of data", function () {
-            var observableArray = ko.observableArray([]);
+            var observableArray = ko.observableArray(ko.utils.range(0,25));
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
-            var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
-            observableArray(array);
             expect(2);
             pager.page(4);
             QUnit.equal(pager.page(), 3, "page");
             pager.page(10);
             QUnit.equal(pager.page(), 3, "page");
+        });
+        test("changing the page updates the relativePages", function () {
+            var observableArray = ko.observableArray(ko.utils.range(0,100));
+            var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
+            expect(2);
+            pager.page(5);
+            QUnit.equal(pager.relativePages(), [3, 4, 5, 6, 7], "page");
+            pager.page(11);
+            QUnit.equal(pager.relativePages(), [7, 8, 9, 10, 11], "page");
         });
     });
 }(jQuery, ko));
