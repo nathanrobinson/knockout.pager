@@ -1,5 +1,7 @@
 (function ($, ko){
     $(function () {
+        
+        
         module("paging view model - empty initializer");
         
         test("inital pages are empty", function () {
@@ -32,6 +34,7 @@
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
             QUnit.deepEqual(pager.relativePages(), [], "relativePages");
         });
+        
         
         module("paging view model - updates to observableArray");
             
@@ -107,5 +110,10 @@
             pager.page(11);
             QUnit.deepEqual(pager.relativePages(), [7, 8, 9, 10, 11], "relativePages");
         });
+        
+        
+        module("pagingForeach binding");
+        
+        
     });
 }(jQuery, ko));
