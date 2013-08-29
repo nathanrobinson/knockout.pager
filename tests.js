@@ -1,6 +1,13 @@
 (function ($, ko){
     $(function () {
-        
+        var array = [];
+        for(var c=1;c<1000;c++){
+            array.push( { key: 'key_' + c, value: 'value ' + c } );
+        }
+        var viewModel = {
+            observableArray: ko.observableArray(array);
+        };
+        ko.applyBindings(viewModel, $('#testBinding')[0]);
         
         module("paging view model - empty initializer");
         
