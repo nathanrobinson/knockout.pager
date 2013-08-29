@@ -58,10 +58,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfe7fa', end
             <div data-bind="pageSizeControl: observableArray, pageSize: pageSize"></div>
             <table>
                 <thead>
-                    <tr><th>$index</th><th>Key</th><th>Value</th></tr>
+                    <tr><th>$index</th><th>Key</th><th>Value</th><th>Page Size</th></tr>
                 </thead>
                 <tbody data-bind="pagedForeach: observableArray">
-                    <tr><td data-bind="text: $index"></td><td data-bind="text: key"></td><td data-bind="text: value"></td></tr>
+                    <tr>
+                        <td data-bind="text: $index"></td>
+                        <td data-bind="text: key"></td>
+                        <td data-bind="text: value"></td>
+                        <td data-bind="text: $parent.pageSize"></td>
+                    </tr>
                 </tbody>
             </table>
             <div data-bind="pageLinks: observableArray"></div>
