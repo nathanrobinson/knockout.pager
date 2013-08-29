@@ -139,6 +139,13 @@
             QUnit.equal($('#testBinding').find('.last-page-link').children('a').hasClass('disabled'), false, "page");
             viewModel.observableArray.pager.page(1);
         });
+        test("$parent binding has correct scope", function () {
+            expect(2)
+            viewModel.pageSize(25);
+            QUnit.equal($('#testBinding').find('.parentPageSize').first().text(), 25, "page");
+            viewModel.pageSize(10);
+            QUnit.equal($('#testBinding').find('.parentPageSize').first().text(), 10, "page");
+        });
         
     });
 }(jQuery, ko));
