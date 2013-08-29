@@ -103,9 +103,9 @@
             var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
             expect(2);
             pager.page(5);
-            QUnit.equal(pager.relativePages(), [3, 4, 5, 6, 7], "relativePages");
+            QUnit.deepEqual(pager.relativePages(), [3, 4, 5, 6, 7], "relativePages");
             pager.page(11);
-            QUnit.equal(pager.relativePages(), [7, 8, 9, 10, 11], "relativePages");
+            QUnit.deepEqual(pager.relativePages(), [7, 8, 9, 10, 11], "relativePages");
         });
     });
 }(jQuery, ko));
