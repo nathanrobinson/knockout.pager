@@ -121,7 +121,7 @@
         test("pageSize binding adds a select with 4 options", function () {
             expect(2);
             QUnit.equal($('#testBinding').find('div.pager-size').children('select').length, 1, "page");
-            QUnit.equal($('#testBinding').find('div.pager-size').children('select').children('option'), 4, "page");
+            QUnit.equal($('#testBinding').find('div.pager-size').children('select').children('option').length, 4, "page");
         });
         test("pagedForeach binding adds 10 rows", function () {
             QUnit.equal($('#testBinding').find('tbody').children('tr').length, 10, "page");
