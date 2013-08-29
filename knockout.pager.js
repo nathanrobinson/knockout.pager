@@ -13,7 +13,7 @@
             <span class='pager-pages' data-bind='foreach: relativePages'>\
                 <span class='pager-page'><a class='pager-button' href='#' data-bind='click: $parent.page.bind($parent, $data), text: $data, css: { selected: $parent.page() == $data }'></a></span>\
             </span>\
-            <span id='last'><a class='pager-button icon-fast-forward' data-bind='click: page.bind($data, totalPages()), enable: page() < totalPages(), css: { disabled: page() == totalPages() }'></a></span>\
+            <span class='last-page-link'><a class='pager-button icon-fast-forward' data-bind='click: page.bind($data, totalPages()), enable: page() < totalPages(), css: { disabled: page() == totalPages() }'></a></span>\
         </div>\
     ");
 
