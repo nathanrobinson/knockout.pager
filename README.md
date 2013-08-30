@@ -32,6 +32,7 @@ Available bindings:
   pageSizeControl: displays a select list with common page sizes (10, 25, 50, 100).
   pageSize: (in combination with any of the previous bindings) sets/updates the number of items per page.
 ```
+_The first three bindings should be bound to the same **observableArray** or **computed** which returns an array._
 
 To Do: 
 - [ ] Add change page callback to support server-side paging.
