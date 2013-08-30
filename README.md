@@ -20,7 +20,7 @@ Somewhere also
 data-bind="pageLinks: observableArray"
 ```
 
-Run Unit Tests: https://rawgithub.com/nathanrobinson/knockout.pager/master/tests.html
+Example / Run Unit Tests: https://rawgithub.com/nathanrobinson/knockout.pager/master/tests.html
 
 You can bind to an observableArray or a computed that returns an array.
 
