@@ -48,7 +48,7 @@ background: -o-linear-gradient(top, #cfe7fa 20%,#6393c1 90%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top, #cfe7fa 20%,#6393c1 90%); /* IE10+ */
 background: linear-gradient(to bottom, #cfe7fa 20%,#6393c1 90%); /* W3C */
             }
-            #testBinding tbody tr:nth-child(odd) { background: #abc };
+            #testBinding tbody tr:nth-child(odd) { background: #abc; }
             
             #testBinding2 {
                 border: 1px solid #021;
@@ -63,9 +63,9 @@ background: -o-linear-gradient(top, #cffae7 20%,#63c193 90%); /* Opera 11.10+ */
 background: -ms-linear-gradient(top, #cffae7 20%,#63c193 90%); /* IE10+ */
 background: linear-gradient(to bottom, #cffae7 20%,#63c193 90%); /* W3C */
             }
-            #testBinding2 tbody tr:nth-child(odd) { background: #acb };
+            #testBinding2 tbody tr:nth-child(odd) { background: #acb; }
             
-            #qunit-header { clear: both; }
+            .clear { clear: both; }
         </style>
     </head>
     <body>
@@ -103,18 +103,20 @@ background: linear-gradient(to bottom, #cffae7 20%,#63c193 90%); /* W3C */
             </table>
             <div data-bind="pageLinks: observableArray"></div>
         </div>
-        <h1 id="qunit-header">Unit Tests</h1>
-        <h2 id="qunit-banner"></h2>
-        <div id="qunit-testrunner-toolbar"></div>
-        <ol id="qunit-tests"></ol>
-        <div id="qunit-fixture"></div>
+        <div class="clear">
+            <h1 id="qunit-header">Unit Tests</h1>
+            <h2 id="qunit-banner"></h2>
+            <div id="qunit-testrunner-toolbar"></div>
+            <ol id="qunit-tests"></ol>
+            <div id="qunit-fixture"></div>
         
-        <div id="bgListContext"></div>
-        <div id="customerListContext"></div>
-        <div id="cmfBuyingGroupListContext"></div>
-        <div id="planSelection"></div>
-        <div id="ppbListContext"></div>
-        <div id="productAdminContext"></div>
-        <div id="tacticListContext"></div>
+            <div id="bgListContext"></div>
+            <div id="customerListContext"></div>
+            <div id="cmfBuyingGroupListContext"></div>
+            <div id="planSelection"></div>
+            <div id="ppbListContext"></div>
+            <div id="productAdminContext"></div>
+            <div id="tacticListContext"></div>
+        </div>
     </body>
 </html>
