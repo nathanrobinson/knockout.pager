@@ -1,15 +1,21 @@
 (function ($, ko){
     $(function () {
-        var array = [];
+        var array = [], array2 = [];
         for(var c=1;c<1000;c++){
             array.push( { key: 'key_' + c, value: 'value ' + c } );
+            array2.push( { key: 'key_' + c, value: 'value ' + c } );
         }
         var viewModel = { 
             observableArray: ko.observableArray(array),
             pageSize: ko.observable(10)
         };
-        
         ko.applyBindings(viewModel, $('#testBinding')[0]);
+        
+        var viewModel2 = { 
+            observableArray: array2,
+            pageSize: ko.observable(10)
+        };
+        ko.applyBindings(viewModel2, $('#testBinding2')[0]);
         
         module("paging view model - empty initializer");
             var observableArray = ko.observableArray([]);
