@@ -64,11 +64,11 @@
             self.allowChangePageSize = ko.observable(false);
 
             self.totalPages = ko.computed(function () {
-                var array = observableArray();
+                var array = ko.utils.unwrapObservable(observableArray);
                 return Math.ceil(array.length / self.itemsPerPage());
             });
             self.pagedItems = ko.computed(function () {
-                var array = observableArray();
+                var array = ko.utils.unwrapObservable(observableArray);
                 var indexOfFirstItemOnCurrentPage = (((self.page() * 1) - 1) * (self.itemsPerPage() * 1));
                 var pageArray = array.slice(indexOfFirstItemOnCurrentPage, indexOfFirstItemOnCurrentPage + (self.itemsPerPage()* 1));
                 return pageArray;
@@ -86,9 +86,10 @@
                 return ko.utils.range(firstPage, lastPage);
             });
 
-            observableArray.subscribe(function () {
-                self.page(1);
-            });
+            if (ko.isObservable(observableArray))
+                observableArray.subscribe(function () {
+                    self.page(1);
+                });
 
             self.itemsPerPage.subscribe(function () {
                 self.page(1);
