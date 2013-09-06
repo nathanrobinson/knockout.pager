@@ -87,12 +87,12 @@ background: linear-gradient(to bottom, #cffae7 20%,#63c193 90%); /* W3C */
             <div data-bind="pageLinks: observableArray"></div>
         </div>
         <div id="testBinding2" class="bindingDiv">
-            <div data-bind="pageSizeControl: observableArray, pageSize: pageSize"></div>
+            <div data-bind="pageSizeControl: array, pageSize: pageSize"></div>
             <table>
                 <thead>
                     <tr><th>$index</th><th>Key</th><th>Value</th><th>Page Size</th></tr>
                 </thead>
-                <tbody data-bind="pagedForeach: observableArray">
+                <tbody data-bind="pagedForeach: array">
                     <tr>
                         <td data-bind="text: $index"></td>
                         <td data-bind="text: key"></td>
@@ -101,7 +101,7 @@ background: linear-gradient(to bottom, #cffae7 20%,#63c193 90%); /* W3C */
                     </tr>
                 </tbody>
             </table>
-            <div data-bind="pageLinks: observableArray"></div>
+            <div data-bind="pageLinks: array"></div>
         </div>
         <div class="clear">
             <h1 id="qunit-header">Unit Tests</h1>
