@@ -218,16 +218,9 @@
         test("pageSize binding adds 25 rows", function () {
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
         });
-        test("pageSize binding updates", function () {
+        test("user can still change page size", function () {
             viewModel3.observableArray.pager.itemsPerPage(10);
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
-        });
-        test("$parent binding has correct scope", function () {
-            expect(2)
-            viewModel3.observableArray.pager.itemsPerPage(25);
-            QUnit.equal($('#testBinding3').find('.parentPageSize').first().text(), 25, "$parent");
-            viewModel3.observableArray.pager.itemsPerPage(10);
-            QUnit.equal($('#testBinding3').find('.parentPageSize').first().text(), 10, "$parent");
         });
         
         
