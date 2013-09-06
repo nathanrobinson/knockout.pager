@@ -65,6 +65,21 @@ background: linear-gradient(to bottom, #cffae7 20%,#63c193 90%); /* W3C */
             }
             #testBinding2 tbody tr:nth-child(odd) { background: #acb; }
             
+            #testBinding3 {
+                border: 1px solid #201;
+                }
+            #testBinding3 thead tr {
+                color: white;
+                background: #facfe7; /* Old browsers */
+background: -moz-linear-gradient(top, #facfe7 20%, #c16393 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#facfe7), color-stop(90%,#c16393)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #facfe7 20%,#c16393 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #facfe7 20%,#c16393 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #facfe7 20%,#c16393 90%); /* IE10+ */
+background: linear-gradient(to bottom, #facfe7 20%,#c16393 90%); /* W3C */
+            }
+            #testBinding3 tbody tr:nth-child(odd) { background: #cab; }
+            
             .clear { clear: both; }
         </style>
     </head>
@@ -87,6 +102,23 @@ background: linear-gradient(to bottom, #cffae7 20%,#63c193 90%); /* W3C */
             <div data-bind="pageLinks: observableArray"></div>
         </div>
         <div id="testBinding2" class="bindingDiv">
+            <div data-bind="pageSizeControl: array, pageSize: pageSize"></div>
+            <table>
+                <thead>
+                    <tr><th>$index</th><th>Key</th><th>Value</th><th>Page Size</th></tr>
+                </thead>
+                <tbody data-bind="pagedForeach: array">
+                    <tr>
+                        <td data-bind="text: $index"></td>
+                        <td data-bind="text: key"></td>
+                        <td data-bind="text: value"></td>
+                        <td class="parentPageSize" data-bind="text: $parent.pageSize"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div data-bind="pageLinks: array"></div>
+        </div>
+        <div id="testBinding3" class="bindingDiv">
             <div data-bind="pageSizeControl: array, pageSize: pageSize"></div>
             <table>
                 <thead>
