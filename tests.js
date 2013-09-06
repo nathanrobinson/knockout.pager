@@ -162,9 +162,9 @@
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
         });
         test("pageSize binding updates", function () {
-            viewModel.pageSize(25);
+            viewModel2.pageSize(25);
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 25, "pageSize");
-            viewModel.pageSize(10);
+            viewModel2.pageSize(10);
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
         });
         test("pageLinks adds first page button", function () {
@@ -180,23 +180,23 @@
             QUnit.equal($('#testBinding2').find('.first-page-link').children('a').hasClass('disabled'), true, "pageLinks");
         });
         test("first page button is not disabled on other pages", function () {
-            viewModel.array.pager.page(2);
+            viewModel2.array.pager.page(2);
             QUnit.equal($('#testBinding2').find('.first-page-link').children('a').hasClass('disabled'), false, "pageLinks");
         });
         test("last page button is disabled on last page", function () {
-            viewModel.array.pager.page(100);
+            viewModel2.array.pager.page(100);
             QUnit.equal($('#testBinding2').find('.last-page-link').children('a').hasClass('disabled'), true, "last page");
         });
         test("last page button is not disabled on other pages", function () {
-            viewModel.array.pager.page(99);
+            viewModel2.array.pager.page(99);
             QUnit.equal($('#testBinding2').find('.last-page-link').children('a').hasClass('disabled'), false, "last page");
-            viewModel.array.pager.page(1);
+            viewModel2.array.pager.page(1);
         });
         test("$parent binding has correct scope", function () {
             expect(2)
-            viewModel.pageSize(25);
+            viewModel2.pageSize(25);
             QUnit.equal($('#testBinding2').find('.parentPageSize').first().text(), 25, "$parent");
-            viewModel.pageSize(10);
+            viewModel2.pageSize(10);
             QUnit.equal($('#testBinding2').find('.parentPageSize').first().text(), 10, "$parent");
         });
         
