@@ -114,7 +114,7 @@
             viewModel.pageSize(50);
             QUnit.equal($('#testBinding').find('tbody').children('tr').length, 50, "pageSize");
             viewModel.observableArray.pager.itemsPerPage(10);
-            QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
+            QUnit.equal($('#testBinding').find('tbody').children('tr').length, 10, "pageSize");
             QUnit.equal(viewModel.pageSize(), 10, "pageSize");
         });
         test("pageLinks adds first page button", function () {
@@ -216,11 +216,11 @@
         ko.applyBindings(viewModel3, $('#testBinding3')[0]);
         
         test("pageSize binding adds 25 rows", function () {
-            QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
+            QUnit.equal($('#testBinding3').find('tbody').children('tr').length, 10, "pageSize");
         });
         test("user can still change page size", function () {
             viewModel3.observableArray.pager.itemsPerPage(10);
-            QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
+            QUnit.equal($('#testBinding3').find('tbody').children('tr').length, 10, "pageSize");
         });
         
         
