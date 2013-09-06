@@ -102,7 +102,7 @@ background: linear-gradient(to bottom, #c69 20%,#936 90%); /* W3C */
     </head>
     <body>
         <div id="testBinding" class="bindingDiv">
-            <div data-bind="pageSizeControl: observableArray, pageSize: pageSize"></div>
+            <div>Items per page: <span data-bind="pageSizeControl: observableArray, pageSize: pageSize"></span></div>
             <table>
                 <thead>
                     <tr><th>$index</th><th>Key</th><th>Value</th><th>Page Size</th></tr>
@@ -119,7 +119,7 @@ background: linear-gradient(to bottom, #c69 20%,#936 90%); /* W3C */
             <div data-bind="pageLinks: observableArray"></div>
         </div>
         <div id="testBinding2" class="bindingDiv">
-            <div data-bind="pageSizeControl: array, pageSize: pageSize"></div>
+            <div>Items per page: <span data-bind="pageSizeControl: observableArray, pageSize: pageSize"></span></div>
             <table>
                 <thead>
                     <tr><th>$index</th><th>Key</th><th>Value</th><th>Page Size</th></tr>
@@ -136,7 +136,7 @@ background: linear-gradient(to bottom, #c69 20%,#936 90%); /* W3C */
             <div data-bind="pageLinks: array"></div>
         </div>
         <div id="testBinding3" class="bindingDiv">
-            <div data-bind="pageSizeControl: observableArray, pageSize: pageSize"></div>
+            <div>Items per page: <span data-bind="pageSizeControl: observableArray, pageSize: pageSize"></span></div>
             <table>
                 <thead>
                     <tr><th>$index</th><th>Key</th><th>Value</th><th>Page Size</th></tr>
