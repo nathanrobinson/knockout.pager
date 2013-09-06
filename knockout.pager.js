@@ -18,14 +18,12 @@
     ");
 
     templateEngine.addTemplate("ko_pager_size", "\
-        <div class='pager-size' data-bind='if: allowChangePageSize'>\
-            <select data-bind='value: itemsPerPage'>\
+            <select data-bind='value: itemsPerPage, enable: allowChangePageSize'>\
                 <option>10</option>\
                 <option>25</option>\
                 <option>50</option>\
                 <option>100</option>\
             </select>\
-        </div>\
     ");
 
     function makeTemplateValueAccessor(pager) {
@@ -138,7 +136,7 @@
             while (element.firstChild) ko.removeNode(element.firstChild);
 
             // Render the page links
-            ko.renderTemplate('ko_pager_size', observable.pager, { templateEngine: templateEngine }, element, "replaceNode");
+            ko.renderTemplate('ko_pager_size', observable.pager, { templateEngine: templateEngine }, element);
         }
     };
 
