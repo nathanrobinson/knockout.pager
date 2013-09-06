@@ -40,6 +40,8 @@
 
     function checkItemPerPageBinding(allBindings, pager){
         if (allBindings['pageSize']) {
+            pager.itemsPerPage(ko.utils.unwrapObservable(allBindings['pageSize']));
+                
             if (ko.isObservable(allBindings['pageSize'])) {
                 allBindings['pageSize'].subscribe(function (newVal) {
                     pager.itemsPerPage(newVal);
@@ -47,9 +49,6 @@
                 pager.itemsPerPage.subscribe(function (newVal) {
                     allBindings['pageSize'](newVal);
                 });
-            }
-            else {
-                pager.itemsPerPage(allBindings['pageSize']);
             }
         }
     }
