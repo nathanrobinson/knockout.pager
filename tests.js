@@ -103,8 +103,8 @@
         
         test("pageSizeControl binding adds a select with 4 options", function () {
             expect(2);
-            QUnit.equal($('#testBinding').find('div.pager-size').children('select').length, 1, "pageSizeControl");
-            QUnit.equal($('#testBinding').find('div.pager-size').children('select').children('option').length, 4, "pageSizeControl");
+            QUnit.equal($('#testBinding').find('select.pager-size').length, 1, "pageSizeControl");
+            QUnit.equal($('#testBinding').find('select.pager-size').children('option').length, 4, "pageSizeControl");
         });
         test("pageSize binding adds 25 rows", function () {
             QUnit.equal($('#testBinding').find('tbody').children('tr').length, 25, "pageSize");
@@ -160,8 +160,8 @@
         
         test("pageSizeControl binding adds a select with 4 options", function () {
             expect(2);
-            QUnit.equal($('#testBinding2').find('div.pager-size').children('select').length, 1, "pageSizeControl");
-            QUnit.equal($('#testBinding2').find('div.pager-size').children('select').children('option').length, 4, "pageSizeControl");
+            QUnit.equal($('#testBinding2').find('select.pager-size').length, 1, "pageSizeControl");
+            QUnit.equal($('#testBinding2').find('select.pager-size').children('option').length, 4, "pageSizeControl");
         });
         test("pageSize binding adds 10 rows", function () {
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
