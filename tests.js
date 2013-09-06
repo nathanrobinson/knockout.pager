@@ -89,10 +89,11 @@
         
         module("pagingForeach binding - observableArray");
         
-        var array = [], array2 = [];
+        var array = [], array2 = [], array3 = [];
         for(var c=1;c<1000;c++){
-            array.push( { key: 'key_' + c, value: 'value ' + c } );
-            array2.push( { key: 'key_' + c, value: 'value ' + c } );
+            array.push( { key: 'key_1_' + c, value: 'value ' + c } );
+            array2.push( { key: 'key_2_' + c, value: 'value ' + c } );
+            array3.push( { key: 'key_3_' + c, value: 'value ' + c } );
         }
         var viewModel = { 
             observableArray: ko.observableArray(array),
@@ -108,9 +109,13 @@
         test("pageSize binding adds 25 rows", function () {
             QUnit.equal($('#testBinding').find('tbody').children('tr').length, 25, "pageSize");
         });
-        test("pageSize binding updates to 10 rows", function () {
-            viewModel.pageSize(10);
-            QUnit.equal($('#testBinding').find('tbody').children('tr').length, 10, "pageSize");
+        test("pageSize binding updates", function () {
+            expect(3);
+            viewModel.pageSize(50);
+            QUnit.equal($('#testBinding').find('tbody').children('tr').length, 50, "pageSize");
+            viewModel.array.pager.itemsPerPage(10);
+            QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
+            QUnit.equal(viewModel.pageSize(), 10, "pageSize");
         });
         test("pageLinks adds first page button", function () {
             QUnit.equal($('#testBinding').find('.first-page-link').children('a').length, 1, "pageLinks");
@@ -162,10 +167,12 @@
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
         });
         test("pageSize binding updates", function () {
+            expect(3);
             viewModel2.pageSize(25);
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 25, "pageSize");
-            viewModel2.pageSize(10);
+            viewModel2.array.pager.itemsPerPage(10);
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
+            QUnit.equal(viewModel2.pageSize(), 10, "pageSize");
         });
         test("pageLinks adds first page button", function () {
             QUnit.equal($('#testBinding2').find('.first-page-link').children('a').length, 1, "pageLinks");
@@ -198,6 +205,29 @@
             QUnit.equal($('#testBinding2').find('.parentPageSize').first().text(), 25, "$parent");
             viewModel2.pageSize(10);
             QUnit.equal($('#testBinding2').find('.parentPageSize').first().text(), 10, "$parent");
+        });
+        
+        module("pagingForeach binding - static pageSize");
+        
+        var viewModel3 = { 
+            observableArray: ko.observableArray(array3),
+            pageSize: 25
+        };
+        ko.applyBindings(viewModel3, $('#testBinding3')[0]);
+        
+        test("pageSize binding adds 25 rows", function () {
+            QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
+        });
+        test("pageSize binding updates", function () {
+            viewModel3.observableArray.pager.itemsPerPage(10);
+            QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
+        });
+        test("$parent binding has correct scope", function () {
+            expect(2)
+            viewModel3.observableArray.pager.itemsPerPage(25);
+            QUnit.equal($('#testBinding3').find('.parentPageSize').first().text(), 25, "$parent");
+            viewModel3.observableArray.pager.itemsPerPage(10);
+            QUnit.equal($('#testBinding3').find('.parentPageSize').first().text(), 10, "$parent");
         });
         
         
