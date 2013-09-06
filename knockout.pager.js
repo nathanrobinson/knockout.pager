@@ -49,7 +49,7 @@
                 });
             }
             else {
-                pager.itemsPerPage(allBindings['itemsPerPage']);
+                pager.itemsPerPage(allBindings['pageSize']);
             }
         }
     }
