@@ -18,7 +18,7 @@
     ");
 
     templateEngine.addTemplate("ko_pager_size", "\
-            <select class='pageSizeControl' data-bind='value: itemsPerPage, enable: allowChangePageSize'>\
+            <select class='pager-size' data-bind='value: itemsPerPage, enable: allowChangePageSize'>\
                 <option>10</option>\
                 <option>25</option>\
                 <option>50</option>\
