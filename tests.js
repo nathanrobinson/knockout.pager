@@ -113,7 +113,7 @@
             expect(3);
             viewModel.pageSize(50);
             QUnit.equal($('#testBinding').find('tbody').children('tr').length, 50, "pageSize");
-            viewModel.array.pager.itemsPerPage(10);
+            viewModel.observableArray.pager.itemsPerPage(10);
             QUnit.equal($('#testBinding2').find('tbody').children('tr').length, 10, "pageSize");
             QUnit.equal(viewModel.pageSize(), 10, "pageSize");
         });
