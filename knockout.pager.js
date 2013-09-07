@@ -59,16 +59,27 @@
 
             self.itemsPerPage = ko.observable(10);
             self.allowChangePageSize = ko.observable(false);
+            
+            var totalItems = ko.utils.unwrapObservable(observableArray).length;
+            
+            self.totalItems = ko.observable(totalItems);
 
             self.totalPages = ko.computed(function () {
-                var array = ko.utils.unwrapObservable(observableArray);
-                return Math.ceil(array.length / self.itemsPerPage());
+                return Math.ceil(self.totalItems() / self.itemsPerPage());
             });
+            
+            self.getPageMethod = null;
+            
             self.pagedItems = ko.computed(function () {
-                var array = ko.utils.unwrapObservable(observableArray);
-                var indexOfFirstItemOnCurrentPage = (((self.page() * 1) - 1) * (self.itemsPerPage() * 1));
-                var pageArray = array.slice(indexOfFirstItemOnCurrentPage, indexOfFirstItemOnCurrentPage + (self.itemsPerPage()* 1));
-                return pageArray;
+                if(self.getPageMethod) {
+                    return self.getPageMethod(self.itemsPerPage(), self.page());
+                }
+                else {
+                    var array = ko.utils.unwrapObservable(observableArray);
+                    var indexOfFirstItemOnCurrentPage = (((self.page() * 1) - 1) * (self.itemsPerPage() * 1));
+                    var pageArray = array.slice(indexOfFirstItemOnCurrentPage, indexOfFirstItemOnCurrentPage + (self.itemsPerPage()* 1));
+                    return pageArray;
+                }
             });
 
             self.relativePages = ko.computed(function () {
@@ -84,8 +95,9 @@
             });
 
             if (ko.isObservable(observableArray))
-                observableArray.subscribe(function () {
+                observableArray.subscribe(function (newArray) {
                     self.page(1);
+                    self.totalItems(newArray.length);
                 });
 
             self.itemsPerPage.subscribe(function () {
