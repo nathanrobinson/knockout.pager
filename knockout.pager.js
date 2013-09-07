@@ -72,6 +72,7 @@
                 if(self.getPageMethod()) {
                     return self.getPageMethod()(self.itemsPerPage(), self.page());
                 }
+                return [];
             });
 
             self.relativePages = ko.computed(function () {
