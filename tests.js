@@ -1,6 +1,7 @@
 (function ($, ko){
     $(function () {
         
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("paging view model - base Pager - empty initializer");
             var pager = new ko.bindingHandlers.pagedForeach.Pager();
         
@@ -23,6 +24,8 @@
             QUnit.deepEqual(pager.relativePages(), [], "relativePages");
         });
         
+        
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("paging view model - ClientPager - empty initializer");
             var observableArray = ko.observableArray([]);
             var clientPager = new ko.bindingHandlers.pagedForeach.ClientPager(observableArray);
@@ -47,6 +50,7 @@
         });
         
         
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("paging view model - ClientPager - updates to observableArray");
             
         test("pager updates with observableArray", function(){
@@ -109,20 +113,38 @@
         });
         
         
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("paging view model - ServerPager - empty initializer");
-            var totalItems = ko.observable(100);
-            var items = ko.utils.range(0,100);
+            var totalItems = ko.observable(0);
             var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
                 var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = items.slice(indexOfFirstItemOnCurrentPage, 
+                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
                                             indexOfFirstItemOnCurrentPage + pager.itemsPerPage());
                 return pageArray;
             }, totalItems);
         
+        test("inital pages are empty", function () {
+            QUnit.deepEqual(serverPager.pagedItems(), [], "paged items");
+        });
+        test("inital page is 1", function () {
+            QUnit.equal(serverPager.page(), 1, "page");
+        });
+        test("inital itemsPerPage is 10", function () {
+            QUnit.equal(serverPager.itemsPerPage(), 10, "itemsPerPage");
+        });
+        test("inital allowChangePageSize is false", function () {
+            QUnit.equal(serverPager.allowChangePageSize(), false, "allowChangePageSize");
+        });
+        test("inital totalPages is 0", function () {
+            QUnit.equal(serverPager.totalPages(), 0, "totalPages");
+        });
+        test("inital relativePages are empty", function () {
+            QUnit.deepEqual(serverPager.relativePages(), [], "relativePages");
         
         
         
         
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("pagingForeach binding - observableArray");
         
         var array = [], array2 = [], array3 = [];
@@ -186,6 +208,8 @@
             QUnit.equal($('#testBinding').find('.parentPageSize').first().text(), 10, "$parent");
         });
         
+        
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("pagingForeach binding - static array");
         
         var viewModel2 = { 
@@ -243,6 +267,8 @@
             QUnit.equal($('#testBinding2').find('.parentPageSize').first().text(), 10, "$parent");
         });
         
+        
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("pagingForeach binding - static pageSize");
         
         var viewModel3 = { 
@@ -260,5 +286,6 @@
         });
         
         
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     });
 }(jQuery, ko));
