@@ -139,6 +139,21 @@
             QUnit.deepEqual(serverPager.relativePages(), [], "relativePages");
         });
         
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+        module("paging view model - ServerPager");
+        
+        test("totalItems updates", function () {
+            totalItems(100);
+            QUnit.equal(serverPager.totalPages(), 10, "totalPages");
+        });
+        test("server page method is called", function () {
+            serverPager.page(2);
+            QUnit.deepEqual(serverPager.pagedItems(), [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "getPageMethod");
+        });
+        test("correct itemsPerPage is passed to page method", function () {
+            serverPager.itemsPerPage(5);
+            QUnit.deepEqual(serverPager.pagedItems(), [0, 1, 2, 3, 4], "getPageMethod");
+        });
         
         
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
