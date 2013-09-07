@@ -122,7 +122,7 @@
             
             return pager;
         },
-        ServerPager: function(pager, getPageMethod, totalITems){
+        ServerPager: function(getPageMethod, totalITems, pager){
             if(!pager) pager = new ko.bindingHandlers.pagedForeach.Pager();
             
             pager.getPageMethod(getPageMethod);
