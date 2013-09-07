@@ -121,8 +121,8 @@
 
             if (ko.isObservable(observableArray))
                 observableArray.subscribe(function (newArray) {
-                    pager.page(1);
                     pager.totalItems(newArray.length);
+                    pager.page(1);
                 });
             
             return pager;
