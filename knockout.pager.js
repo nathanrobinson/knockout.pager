@@ -63,7 +63,7 @@
             self.totalItems = ko.observable(0);
 
             self.totalPages = ko.computed(function () {
-                return Math.max(1, Math.ceil(self.totalItems() / self.itemsPerPage()));
+                return Math.ceil(self.totalItems() / self.itemsPerPage());
             });
             
             self.getPageMethod = ko.observable();
@@ -87,7 +87,11 @@
                 return ko.utils.range(firstPage, lastPage);
             });
 
-            self.itemsPerPage.subscribe(function () {
+            self.itemsPerPage.subscribe(function (newVal) {
+                var n = Math.max(1, Math.ceil(newVal));
+                if (n != newVal) {
+                    self.itemsPerPage(n);
+                }
                 self.page(1);
             });
 
