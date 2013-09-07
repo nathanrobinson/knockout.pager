@@ -33,7 +33,7 @@
     }
     
     function defaultPagerIfEmpty(observable) {
-        if (!observable.pager) observable.pager = new ko.bindingHandlers.pagedForeach.Pager(observable);
+        if (!observable.pager) observable.pager = new ko.bindingHandlers.pagedForeach.ClientPager(observable);
     }
 
     function checkItemPerPageBinding(allBindings, pager){
@@ -52,7 +52,7 @@
     }
 
     ko.bindingHandlers.pagedForeach = {
-        Pager : function (observableArray){
+        Pager : function (){
             var self = this;
 
             self.page = ko.observable(1);
@@ -60,25 +60,17 @@
             self.itemsPerPage = ko.observable(10);
             self.allowChangePageSize = ko.observable(false);
             
-            var totalItems = ko.utils.unwrapObservable(observableArray).length;
-            
-            self.totalItems = ko.observable(totalItems);
+            self.totalItems = ko.observable(0);
 
             self.totalPages = ko.computed(function () {
                 return Math.ceil(self.totalItems() / self.itemsPerPage());
             });
             
-            self.getPageMethod = null;
+            self.getPageMethod = ko.observable();
             
             self.pagedItems = ko.computed(function () {
-                if(self.getPageMethod) {
-                    return self.getPageMethod(self.itemsPerPage(), self.page());
-                }
-                else {
-                    var array = ko.utils.unwrapObservable(observableArray);
-                    var indexOfFirstItemOnCurrentPage = (((self.page() * 1) - 1) * (self.itemsPerPage() * 1));
-                    var pageArray = array.slice(indexOfFirstItemOnCurrentPage, indexOfFirstItemOnCurrentPage + (self.itemsPerPage()* 1));
-                    return pageArray;
+                if(self.getPageMethod()) {
+                    return self.getPageMethod()(self.itemsPerPage(), self.page());
                 }
             });
 
@@ -94,12 +86,6 @@
                 return ko.utils.range(firstPage, lastPage);
             });
 
-            if (ko.isObservable(observableArray))
-                observableArray.subscribe(function (newArray) {
-                    self.page(1);
-                    self.totalItems(newArray.length);
-                });
-
             self.itemsPerPage.subscribe(function () {
                 self.page(1);
             });
@@ -114,6 +100,40 @@
             });
 
             return self;
+        },
+        ClientPager: function(observableArray, pager){
+            if(!pager) pager = new ko.bindingHandlers.pagedForeach.Pager();
+            
+            pager.totalItems(ko.utils.unwrapObservable(observableArray).length);
+            
+            pager.getPageMethod(function(itemsPerPage, page){
+                var array = ko.utils.unwrapObservable(observableArray);
+                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
+                var pageArray = array.slice(indexOfFirstItemOnCurrentPage, indexOfFirstItemOnCurrentPage + self.itemsPerPage());
+                return pageArray;
+            });
+
+            if (ko.isObservable(observableArray))
+                observableArray.subscribe(function (newArray) {
+                    pager.page(1);
+                    pager.totalItems(newArray.length);
+                });
+            
+            return pager;
+        },
+        ServerPager: function(pager, getPageMethod, totalITems){
+            if(!pager) pager = new ko.bindingHandlers.pagedForeach.Pager();
+            
+            pager.getPageMethod(getPageMethod);
+            
+            pager.totalItems(ko.utils.unwrapObservable(totalItems));
+            
+            if (ko.isObservable(totalItems))
+                totalItems.subscribe(function (newCount) {
+                    pager.totalItems(newCount);
+                });
+                
+            return pager;
         },
         init : function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext){
             var observable = valueAccessor(), allBindings = allBindingsAccessor();
