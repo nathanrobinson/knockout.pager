@@ -123,9 +123,6 @@
                 return pageArray;
             }, totalItems);
         
-        test("inital pages are empty", function () {
-            QUnit.deepEqual(serverPager.pagedItems(), [], "paged items");
-        });
         test("inital page is 1", function () {
             QUnit.equal(serverPager.page(), 1, "page");
         });
