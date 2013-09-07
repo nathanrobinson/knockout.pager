@@ -3,7 +3,7 @@
         
         module("paging view model - empty initializer");
             var observableArray = ko.observableArray([]);
-            var pager = new ko.bindingHandlers.pagedForeach.Pager(observableArray);
+            var pager = new ko.bindingHandlers.pagedForeach.ClientPager(observableArray);
         
         test("inital pages are empty", function () {
             QUnit.deepEqual(pager.pagedItems(), [], "paged items");
