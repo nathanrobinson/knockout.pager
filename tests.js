@@ -140,7 +140,7 @@
         });
         test("inital relativePages are empty", function () {
             QUnit.deepEqual(serverPager.relativePages(), [], "relativePages");
-        
+        });
         
         
         
