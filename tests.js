@@ -154,6 +154,12 @@
             serverPager.itemsPerPage(5);
             QUnit.deepEqual(serverPager.pagedItems(), [0, 1, 2, 3, 4], "getPageMethod");
         });
+        test("pager calculates relativePages based on totalItems", function(){
+            expect(2);
+            QUnit.deepEqual(clientPager.relativePages(), [1, 2, 3, 4, 5], "relativePages");
+            totalItems(20);
+            QUnit.deepEqual(clientPager.relativePages(), [1, 2], "relativePages");
+        });
         
         
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
