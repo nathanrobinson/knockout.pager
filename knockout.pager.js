@@ -97,8 +97,15 @@
 
             self.page.subscribe(function (newVal) {
                 var n = (newVal + '').replace(/[^0-9]/g, '');
-                if (n < 1) n = 1;
-                else if (n > self.totalPages()) n = self.totalPages();
+                var totalPages = self.totalPages();
+                if (n < 1){
+                    if(totalPages >= 1){
+                        n = 1;
+                    } else {
+                        n = totalPages;
+                    }
+                }
+                else if (n > totalPages) n = totalPages;
                 if (n != newVal) {
                     self.page(n);
                 }
