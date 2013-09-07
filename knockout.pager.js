@@ -109,7 +109,8 @@
             pager.getPageMethod(function(itemsPerPage, page){
                 var array = ko.utils.unwrapObservable(observableArray);
                 var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = array.slice(indexOfFirstItemOnCurrentPage, indexOfFirstItemOnCurrentPage + self.itemsPerPage());
+                var pageArray = array.slice(indexOfFirstItemOnCurrentPage, 
+                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage());
                 return pageArray;
             });
 
