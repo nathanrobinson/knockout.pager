@@ -63,7 +63,7 @@
             self.totalItems = ko.observable(0);
 
             self.totalPages = ko.computed(function () {
-                return Math.ceil(self.totalItems() / self.itemsPerPage());
+                return Math.max(1, Math.ceil(self.totalItems() / self.itemsPerPage()));
             });
             
             self.getPageMethod = ko.observable();
