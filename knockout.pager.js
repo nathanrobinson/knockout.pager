@@ -99,13 +99,9 @@
                 var n = (newVal + '').replace(/[^0-9]/g, '');
                 var totalPages = self.totalPages();
                 if (n < 1){
-                    if(totalPages >= 1){
                         n = 1;
-                    } else {
-                        n = totalPages;
-                    }
                 }
-                else if (n > totalPages) n = totalPages;
+                else if (n > 1 && n > totalPages) n = totalPages;
                 if (n != newVal) {
                     self.page(n);
                 }
