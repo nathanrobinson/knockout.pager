@@ -119,7 +119,7 @@
             var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
                 var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
                 var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage());
+                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
                 return pageArray;
             }, totalItems);
         
@@ -151,8 +151,11 @@
             QUnit.deepEqual(serverPager.pagedItems(), [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "getPageMethod");
         });
         test("correct itemsPerPage is passed to page method", function () {
+            expect(2);
             serverPager.itemsPerPage(5);
             QUnit.deepEqual(serverPager.pagedItems(), [0, 1, 2, 3, 4], "getPageMethod");
+            serverPager.itemsPerPage(10);
+            QUnit.deepEqual(serverPager.pagedItems(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "getPageMethod");
         });
         test("pager calculates relativePages based on totalItems", function(){
             expect(2);
