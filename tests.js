@@ -109,6 +109,20 @@
         });
         
         
+        module("paging view model - ServerPager - empty initializer");
+            var totalItems = ko.observable(100);
+            var items = ko.utils.range(0,100);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
+                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
+                var pageArray = items.slice(indexOfFirstItemOnCurrentPage, 
+                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage());
+                return pageArray;
+            }, totalItems);
+        
+        
+        
+        
+        
         module("pagingForeach binding - observableArray");
         
         var array = [], array2 = [], array3 = [];
