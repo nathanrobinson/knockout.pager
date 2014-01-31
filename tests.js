@@ -115,55 +115,36 @@
         
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("paging view model - ServerPager - empty initializer");
+        function serverfunction(itemsPerPage, page){
+                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
+                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
+                                            indexOfFirstItemOnCurrentPage + itemsPerPage - 1);
+                return pageArray;
+            }
         
         test("inital page is 1", function () {
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             QUnit.equal(serverPager.page(), 1, "page");
         });
         test("inital itemsPerPage is 10", function () {
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             QUnit.equal(serverPager.itemsPerPage(), 10, "itemsPerPage");
         });
         test("inital allowChangePageSize is false", function () {
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             QUnit.equal(serverPager.allowChangePageSize(), false, "allowChangePageSize");
         });
         test("inital totalPages is 0", function () {
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             QUnit.equal(serverPager.totalPages(), 0, "totalPages");
         });
         test("inital relativePages are empty", function () {
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             QUnit.deepEqual(serverPager.relativePages(), [], "relativePages");
         });
         
@@ -172,23 +153,13 @@
         
         test("totalItems updates", function () {
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             totalItems(100);
             QUnit.equal(serverPager.totalPages(), 10, "totalPages");
         });
         test("server page method is called", function () {
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             totalItems(100);
             serverPager.page(2);
             QUnit.deepEqual(serverPager.pagedItems(), [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "getPageMethod");
@@ -196,12 +167,7 @@
         test("correct itemsPerPage is passed to page method", function () {
             expect(2);
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             totalItems(100);
             serverPager.itemsPerPage(5);
             QUnit.deepEqual(serverPager.pagedItems(), [0, 1, 2, 3, 4], "getPageMethod");
@@ -211,12 +177,7 @@
         test("pager calculates relativePages based on totalItems", function(){
             expect(2);
             var totalItems = ko.observable(0);
-            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(function(itemsPerPage, page){
-                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
-                var pageArray = ko.utils.range(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + pager.itemsPerPage() - 1);
-                return pageArray;
-            }, totalItems);
+            var serverPager = new ko.bindingHandlers.pagedForeach.ServerPager(serverfunction, totalItems);
             serverPager.itemsPerPage(10);
             totalItems(100);
             QUnit.deepEqual(serverPager.relativePages(), [1, 2, 3, 4, 5], "relativePages");
