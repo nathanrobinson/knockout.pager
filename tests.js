@@ -147,11 +147,13 @@
             QUnit.equal(serverPager.totalPages(), 10, "totalPages");
         });
         test("server page method is called", function () {
+            totalItems(100);
             serverPager.page(2);
             QUnit.deepEqual(serverPager.pagedItems(), [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "getPageMethod");
         });
         test("correct itemsPerPage is passed to page method", function () {
             expect(2);
+            totalItems(100);
             serverPager.itemsPerPage(5);
             QUnit.deepEqual(serverPager.pagedItems(), [0, 1, 2, 3, 4], "getPageMethod");
             serverPager.itemsPerPage(10);
@@ -159,6 +161,7 @@
         });
         test("pager calculates relativePages based on totalItems", function(){
             expect(2);
+            totalItems(10);
             QUnit.deepEqual(clientPager.relativePages(), [1, 2, 3, 4, 5], "relativePages");
             totalItems(20);
             QUnit.deepEqual(clientPager.relativePages(), [1, 2], "relativePages");
