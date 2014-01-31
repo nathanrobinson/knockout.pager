@@ -161,10 +161,11 @@
         });
         test("pager calculates relativePages based on totalItems", function(){
             expect(2);
-            totalItems(10);
-            QUnit.deepEqual(clientPager.relativePages(), [1, 2, 3, 4, 5], "relativePages");
+            serverPager.itemsPerPage(10);
+            totalItems(100);
+            QUnit.deepEqual(serverPager.relativePages(), [1, 2, 3, 4, 5], "relativePages");
             totalItems(20);
-            QUnit.deepEqual(clientPager.relativePages(), [1, 2], "relativePages");
+            QUnit.deepEqual(serverPager.relativePages(), [1, 2], "relativePages");
         });
         
         
