@@ -79,7 +79,7 @@
             self.getPageMethod = ko.observable();
             
             self.pagedItems = ko.computed(function () {
-                var itemsPerPage = self.itemsPerPage();
+                var itemsPerPage = Math.parseInt(self.itemsPerPage());
                 var page = self.page();
                 if(self.getPageMethod()) {
                     return self.getPageMethod()(itemsPerPage, page);
