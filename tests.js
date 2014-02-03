@@ -330,7 +330,7 @@
         
         
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-        module("pagingForeach binding - static pageSize");
+        module("pagingForeach binding - serverMethod");
         
         var viewModel4 = { 
             serverMethod: serverfunction,
