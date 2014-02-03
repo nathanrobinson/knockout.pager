@@ -166,13 +166,14 @@
             defaultPagerIfEmpty(observable);
             checkItemPerPageBinding(allBindings, observable.pager);
             checkTotalItemsBinding(allBindings, observable.pager);
-            var array = ko.utils.unwrapObservable(observable);
+            if(ko.isObservable(observable))
+                var array = ko.utils.unwrapObservable(observable);
             return ko.bindingHandlers.template.init(element, makeTemplateValueAccessor(observable.pager));
         },
         update : function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext){
             var observable = valueAccessor();
-            var array = ko.utils.unwrapObservable(observable);
-            defaultPagerIfEmpty(observable);
+            if(ko.isObservable(observable))
+                var array = ko.utils.unwrapObservable(observable);
             return ko.bindingHandlers.template.update(element, makeTemplateValueAccessor(observable.pager), allBindingsAccessor, viewModel, bindingContext);
         }
     };
