@@ -334,8 +334,8 @@
         
         var viewModel4 = { 
             serverMethod: serverfunction,
-            totalItems: 100,
-            pageSize: 25
+            totalItems: ko.observable(100),
+            pageSize: ko.observable(25)
         };
         ko.applyBindings(viewModel4, $('#testBinding4')[0]);
         
