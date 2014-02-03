@@ -347,11 +347,11 @@
         ko.applyBindings(viewModel4, $('#testBinding4')[0]);
         
         test("pageSize binding adds 25 rows", function () {
-            viewModel4.observableArray.pager.itemsPerPage(25);
+            viewModel4.serverMethod.pager.itemsPerPage(25);
             QUnit.equal($('#testBinding4').find('tbody').children('tr').length, 25, "pageSize");
         });
         test("user can still change page size", function () {
-            viewModel4.observableArray.pager.itemsPerPage(10);
+            viewModel4.serverMethod.pager.itemsPerPage(10);
             QUnit.equal($('#testBinding4').find('tbody').children('tr').length, 10, "pageSize");
         });
         
