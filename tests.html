@@ -80,6 +80,21 @@ background: linear-gradient(to bottom, #c69 20%,#936 90%); /* W3C */
             }
             #testBinding3 tbody tr:nth-child(odd) { background: #cab; }
             
+            #testBinding4 {
+                border: 1px solid #102;
+                }
+            #testBinding4 thead tr {
+                color: white;
+                background: #9c6; /* Old browsers */
+background: -moz-linear-gradient(top, #9c6 20%, #693 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#9c6), color-stop(90%,#693)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #9c6 20%,#693 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #9c6 20%,#693 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #9c6 20%,#693 90%); /* IE10+ */
+background: linear-gradient(to bottom, #9c6 20%,#693 90%); /* W3C */
+            }
+            #testBinding4 tbody tr:nth-child(odd) { background: #bca; }
+            
             .bindingDiv tbody tr > td {
                 padding: 0 3px;
                 text-align: center;
@@ -151,6 +166,23 @@ background: linear-gradient(to bottom, #c69 20%,#936 90%); /* W3C */
                 </tbody>
             </table>
             <div data-bind="pageLinks: observableArray"></div>
+        </div>
+        <div id="testBinding4" class="bindingDiv">
+            <div>Items per page: <span data-bind="pageSizeControl: serverMethod, pageSize: pageSize"></span></div>
+            <table>
+                <thead>
+                    <tr><th>$index</th><th>Key</th><th>Value</th><th>Page Size</th></tr>
+                </thead>
+                <tbody data-bind="pagedForeach: serverMethod">
+                    <tr>
+                        <td data-bind="text: $index"></td>
+                        <td data-bind="text: key"></td>
+                        <td data-bind="text: value"></td>
+                        <td class="parentPageSize" data-bind="text: $parent.pageSize"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div data-bind="pageLinks: serverMethod"></div>
         </div>
         <div class="clear">
             <h1 id="qunit-header">Unit Tests</h1>
