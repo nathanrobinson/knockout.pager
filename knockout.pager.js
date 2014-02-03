@@ -33,7 +33,11 @@
     }
     
     function defaultPagerIfEmpty(observable) {
-        if (!observable.pager) observable.pager = new ko.bindingHandlers.pagedForeach.ClientPager(observable);
+        if (observable.pager) return;
+        if(ko.isObservable(observable) || !(observable instanceof Function))
+            observable.pager = new ko.bindingHandlers.pagedForeach.ClientPager(observable);
+        else 
+            observable.pager = new ko.bindingHandlers.pagedForeach.ServerPager(observable);
     }
 
     function checkItemPerPageBinding(allBindings, pager){
@@ -48,6 +52,12 @@
                     allBindings['pageSize'](newVal);
                 });
             }
+        }
+    }
+
+    function checkTotalItemsBinding(allBindings, pager){
+        if (allBindings['totalItems'] !== undefined && pager.setTotalItems) {
+            pager.setTotalItems(allBindings['totalItems']);
         }
     }
 
@@ -137,12 +147,17 @@
             
             pager.getPageMethod(getPageMethod);
             
-            pager.totalItems(ko.utils.unwrapObservable(totalItems));
+            pager.setTotalItems = function(totItems){
             
-            if (ko.isObservable(totalItems))
-                totalItems.subscribe(function (newCount) {
-                    pager.totalItems(newCount);
-                });
+                pager.totalItems(ko.utils.unwrapObservable(totItems));
+            
+                if (ko.isObservable(totItems))
+                    totalItems.subscribe(function (newCount) {
+                        pager.totalItems(newCount);
+                    });
+            };
+            
+            if(totalItems) pager.setTotalItems(totalItems);
                 
             return pager;
         },
@@ -150,6 +165,7 @@
             var observable = valueAccessor(), allBindings = allBindingsAccessor();
             defaultPagerIfEmpty(observable);
             checkItemPerPageBinding(allBindings, observable.pager);
+            checkTotalItemsBinding(allBindings, observable.pager);
             var array = ko.utils.unwrapObservable(observable);
             return ko.bindingHandlers.template.init(element, makeTemplateValueAccessor(observable.pager));
         },
@@ -166,6 +182,7 @@
             var observable = valueAccessor(), allBindings = allBindingsAccessor();
             defaultPagerIfEmpty(observable);
             checkItemPerPageBinding(allBindings, observable.pager);
+            checkTotalItemsBinding(allBindings, observable.pager);
             return { 'controlsDescendantBindings': true };
         },
         update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
@@ -188,6 +205,7 @@
             var observable = valueAccessor(), allBindings = allBindingsAccessor();
             defaultPagerIfEmpty(observable);
             checkItemPerPageBinding(allBindings, observable.pager);
+            checkTotalItemsBinding(allBindings, observable.pager);
             return { 'controlsDescendantBindings': true };
         },
         update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
