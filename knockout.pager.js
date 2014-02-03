@@ -152,7 +152,7 @@
                 pager.totalItems(ko.utils.unwrapObservable(totItems));
             
                 if (ko.isObservable(totItems))
-                    totalItems.subscribe(function (newCount) {
+                    totItems.subscribe(function (newCount) {
                         pager.totalItems(newCount);
                     });
             };
