@@ -333,7 +333,14 @@
         module("pagingForeach binding - serverMethod");
         
         var viewModel4 = { 
-            serverMethod: serverfunction,
+            serverMethod: function (itemsPerPage, page){
+                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
+                var pageArray = [];
+                for(var i = indexOfFirstItemOnCurrentPage; c < indexOfFirstItemOnCurrentPage + itemsPerPage; c++) {
+                    pageArray.push( { key: 'key_4_' + c, value: 'value ' + c } );
+                }
+                return pageArray;
+            },
             totalItems: ko.observable(100),
             pageSize: ko.observable(25)
         };
