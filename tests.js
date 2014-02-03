@@ -320,11 +320,32 @@
         ko.applyBindings(viewModel3, $('#testBinding3')[0]);
         
         test("pageSize binding adds 25 rows", function () {
+            viewModel3.observableArray.pager.itemsPerPage(25);
             QUnit.equal($('#testBinding3').find('tbody').children('tr').length, 25, "pageSize");
         });
         test("user can still change page size", function () {
             viewModel3.observableArray.pager.itemsPerPage(10);
             QUnit.equal($('#testBinding3').find('tbody').children('tr').length, 10, "pageSize");
+        });
+        
+        
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+        module("pagingForeach binding - static pageSize");
+        
+        var viewModel4 = { 
+            serverMethod: serverfunction,
+            totalItems: 100,
+            pageSize: 25
+        };
+        ko.applyBindings(viewModel4, $('#testBinding4')[0]);
+        
+        test("pageSize binding adds 25 rows", function () {
+            viewModel4.observableArray.pager.itemsPerPage(25);
+            QUnit.equal($('#testBinding4').find('tbody').children('tr').length, 25, "pageSize");
+        });
+        test("user can still change page size", function () {
+            viewModel4.observableArray.pager.itemsPerPage(10);
+            QUnit.equal($('#testBinding4').find('tbody').children('tr').length, 10, "pageSize");
         });
         
         
