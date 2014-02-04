@@ -357,5 +357,34 @@
         
         
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+        module("pagingForeach binding - serverMethod");
+        
+        var viewModel5 = { 
+            currentItems: ko.observableArray(),
+            totalItems: ko.observable(100),
+            pageSize: ko.observable(25)
+        };
+        viewModel5.serverMethod = function (itemsPerPage, page){
+                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
+                var pageArray = [];
+                for(var c = indexOfFirstItemOnCurrentPage; c < indexOfFirstItemOnCurrentPage + itemsPerPage; c++) {
+                    pageArray.push( { key: 'key_4_' + c, value: 'value ' + c } );
+                }
+                viewModel5.currentItems(pageArray);
+                return pageArray;
+            };
+        ko.applyBindings(viewModel5, $('#testBinding5')[0]);
+        
+        test("pageSize binding adds 25 rows", function () {
+            viewModel5.serverMethod.pager.itemsPerPage(25);
+            QUnit.equal($('#testBinding5').find('tbody').children('tr').length, 25, "pageSize");
+        });
+        test("user can still change page size", function () {
+            viewModel5.serverMethod.pager.itemsPerPage(10);
+            QUnit.equal($('#testBinding5').find('tbody').children('tr').length, 10, "pageSize");
+        });
+        
+        
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     });
 }(jQuery, ko));
