@@ -205,7 +205,7 @@ background: linear-gradient(to bottom, #96c 20%,#639 90%); /* W3C */
                 <thead>
                     <tr><th>$index</th><th>Key</th><th>Value</th><th>Page Size</th></tr>
                 </thead>
-                <tbody data-bind="pagedForeach: serverMethod">
+                <tbody data-bind="foreach: currentItems">
                     <tr>
                         <td data-bind="text: $index"></td>
                         <td data-bind="text: key"></td>
