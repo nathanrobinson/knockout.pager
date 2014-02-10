@@ -32,7 +32,7 @@ Available bindings:
   pageSizeControl: displays a select list with common page sizes (10, 25, 50, 100).
   pageSize: (in combination with any of the previous bindings) sets/updates the number of items per page.
 ```
-_The first three bindings should be bound to the same **observableArray** or **computed** which returns an array._
+_The first three bindings should be bound to the same **observableArray**, **computed**, or **function** which returns an array. The **function** should have the signature: function (itemsPerPage, page){} which returns an array of items for the current page. If your server method is asyncronous, you can bind pageLinks and pageSizeControl to serverMethod and use a normal foreach bound to an observable array and update the observable array using the server method (see examples in **tests.html** and **tests.js**._
 
 To Do: 
-- [ ] Add change page callback to support server-side paging.
+- [X] Add change page callback to support server-side paging.
