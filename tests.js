@@ -368,7 +368,7 @@
                 var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
                 var pageArray = [];
                 for(var c = indexOfFirstItemOnCurrentPage; c < indexOfFirstItemOnCurrentPage + itemsPerPage; c++) {
-                    pageArray.push( { key: 'key_4_' + c, value: 'value ' + c } );
+                    pageArray.push( { key: 'key_5_' + c, value: 'value ' + c } );
                 }
                 viewModel5.currentItems(pageArray);
                 return pageArray;
