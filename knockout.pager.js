@@ -130,7 +130,7 @@
                 var array = ko.utils.unwrapObservable(observableArray);
                 var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
                 var pageArray = array.slice(indexOfFirstItemOnCurrentPage, 
-                                            indexOfFirstItemOnCurrentPage + itemsPerPage;
+                                            indexOfFirstItemOnCurrentPage + itemsPerPage);
                 return pageArray;
             });
 
