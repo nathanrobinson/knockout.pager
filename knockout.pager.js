@@ -8,17 +8,23 @@
     };
 
     templateEngine.addTemplate("ko_pager_links", "\
-        <div class='pager' data-bind='if: totalPages() > 1'>\
-            <span class='first-page-link'><a class='pager-button fa fa-fast-backward' data-bind='click: page.bind($data, 1), enable: page() > 1, css: {disabled: page() == 1}'></a></span>\
-            <span class='pager-pages' data-bind='foreach: relativePages'>\
-                <span class='pager-page'><a class='pager-button' href='#' data-bind='click: $parent.page.bind($parent, $data), text: $data, css: { selected: $parent.page() == $data }'></a></span>\
-            </span>\
-            <span class='last-page-link'><a class='pager-button fa fa-fast-forward' data-bind='click: page.bind($data, totalPages()), enable: page() < totalPages(), css: { disabled: page() == totalPages() }'></a></span>\
+        <div class='pager full' data-bind='if: totalPages() > 1'>\
+	        <span class='number-of-pages'>Page <i data-bind='text: page()' /> of <i data-bind='text: totalPages()' /></span>\
+	        <span class='first-page-link'><a title='First Page' class='pager-button fa fa-chevron-left' href='#' data-bind='click: page.bind($data, 1), enable: page() > 1, css: {disabled: page() == 1}'></a></span>\
+	        <span class='pager-pages' data-bind='foreach: relativePages'>\
+		        <span class='pager-page'><a class='pager-button' href='#' data-bind='click: $parent.page.bind($parent, $data), text: $data, css: { selected: $parent.page() == $data }'></a></span>\
+	        </span>\
+	        <span class='last-page-link'><a title='Last Page' class='pager-button fa fa-chevron-right' href='#' data-bind='click: page.bind($data, totalPages()), enable: page() < totalPages(), css: { disabled: page() == totalPages() }'></a></span>\
+        </div>\
+        <div class='pager mini' data-bind='if: totalPages() > 1'>\
+	        <span class='previous-page-link'><a title='Previous Page' class='pager-button fa fa-chevron-left' href='#' data-bind='click: page.bind($data,  page() - 1), enable: page() > 1, css: {disabled: page() == 1}'></a></span>\
+		        <span class='number-of-pages'><i data-bind='text: page()' /> of <i data-bind='text: totalPages()' /></span>\
+	        <span class='next-page-link'><a title='Next Page' class='pager-button fa fa-chevron-right' href='#' data-bind='click: page.bind($data, page() + 1), enable: page() < totalPages(), css: { disabled: page() == totalPages() }'></a></span>\
         </div>\
     ");
 
     templateEngine.addTemplate("ko_pager_size", "\
-            <select class='pager-size' data-bind='value: itemsPerPage, enable: allowChangePageSize'>\
+            <select class='pager-size' data-bind='value: itemsPerPage, enable: allowChangePageSize' data-style='btn-white\'>\
                 <option>10</option>\
                 <option>25</option>\
                 <option>50</option>\
