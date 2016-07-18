@@ -24,13 +24,21 @@
     ");
 
     templateEngine.addTemplate("ko_pager_size", "\
-            <select class='pager-size' data-bind='value: itemsPerPage, enable: allowChangePageSize' data-style='btn-white\'>\
-                <option>10</option>\
-                <option>25</option>\
-                <option>50</option>\
-                <option>100</option>\
+            <select class='pager-size' \
+                    data-bind='value: itemsPerPage, \
+                        options: pageSizeOptions, \
+                        enable: allowChangePageSize' \
+                    data-style='btn-white\'>\
+                    <option>10</option>\
+                    <option>25</option>\
+                    <option>50</option>\
+                    <option>100</option>\
             </select>\
     ");
+    /*
+                        optionsText: 'name', \
+                        optionsValue: 'value', \
+    */
 
     function makeTemplateValueAccessor(pager) {
         return function () {
@@ -67,25 +75,72 @@
         }
     }
 
+    function checkShowAllPageBinding(allBindings, pager){
+        if (allBindings['showAllPageOption']) {
+            pager.pagesShowAll(ko.utils.unwrapObservable(allBindings['showAllPageOption']));
+                
+            if (ko.isObservable(allBindings['showAllPageOption'])) {
+                allBindings['showAllPageOption'].subscribe(function (newVal) {
+                    pager.pagesShowAll(newVal);
+                });
+                pager.pagesShowAll.subscribe(function (newVal) {
+                    allBindings['showAllPageOption'](newVal);
+                });
+            }
+        }
+    }
+
     ko.bindingHandlers.pagedForeach = {
         Pager : function (){
             var self = this;
 
             self.page = ko.observable(1);
 
+            self.pagesShowAll = ko.observable(false);
             self.itemsPerPage = ko.observable(10);
             self.allowChangePageSize = ko.observable(false);
+            self.pageSizeOptions = ko.pureComputed(function(){
+                var items = [];
+                var totalItems = self.totalItems();
+                var showAll = self.pagesShowAll();
+                
+                if(!showAll || totalItems > 10) {
+                    items.push( 10 );
+                }    
+                if(!showAll || totalItems > 25) {
+                    items.push( 25 );
+                }    
+                if(!showAll || totalItems > 50) {
+                    items.push( 50 );
+                }    
+                if(!showAll || totalItems > 100) {
+                    items.push( 100 );
+                }  
+                
+                if(showAll) {
+                    items.push( 'All' );
+                }
+                return items;       
+            });
             
             self.totalItems = ko.observable(0);
 
-            self.totalPages = ko.computed(function () {
-                return Math.ceil(self.totalItems() / self.itemsPerPage());
+            self.totalPages = ko.pureComputed(function () {
+                return Math.ceil(self.totalItems() / self.itemsPerPageNumber());
             });
             
             self.getPageMethod = ko.observable();
             
+            self.itemsPerPageNumber = ko.pureComputed(function(){
+                var itemsPerPage = self.itemsPerPage();
+                if(itemsPerPage === 'All') {
+                    itemsPerPage = self.totalItems();
+                }
+                return parseInt(itemsPerPage);
+            });
+            
             self.pagedItems = ko.computed(function () {
-                var itemsPerPage = parseInt(self.itemsPerPage());
+                var itemsPerPage = self.itemsPerPageNumber(); 
                 var page = self.page();
                 if(self.getPageMethod()) {
                     return self.getPageMethod()(itemsPerPage, page);
@@ -93,7 +148,7 @@
                 return [];
             });
 
-            self.relativePages = ko.computed(function () {
+            self.relativePages = ko.pureComputed(function () {
                 var currentPage = self.page() * 1;
                 var totalPages = self.totalPages();
                 var pagesFromEnd = totalPages - currentPage;
@@ -105,11 +160,7 @@
                 return ko.utils.range(firstPage, lastPage);
             });
 
-            self.itemsPerPage.subscribe(function (newVal) {
-                var n = Math.max(1, Math.ceil(newVal));
-                if (n != newVal) {
-                    self.itemsPerPage(n);
-                }
+            self.itemsPerPageNumber.subscribe(function (newVal) {
                 self.page(1);
             });
 
@@ -190,6 +241,7 @@
             defaultPagerIfEmpty(observable);
             checkItemPerPageBinding(allBindings, observable.pager);
             checkTotalItemsBinding(allBindings, observable.pager);
+            checkShowAllPageBinding(allBindings, observable.pager);
             return { 'controlsDescendantBindings': true };
         },
         update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {

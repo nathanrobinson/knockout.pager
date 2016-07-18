@@ -189,11 +189,12 @@
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
         module("pagingForeach binding - observableArray");
         
-        var array = [], array2 = [], array3 = [];
+        var array = [], array2 = [], array3 = [], array6 = [];
         for(var c=1;c<1000;c++){
             array.push( { key: 'key_1_' + c, value: 'value ' + c } );
             array2.push( { key: 'key_2_' + c, value: 'value ' + c } );
             array3.push( { key: 'key_3_' + c, value: 'value ' + c } );
+            array6.push( { key: 'key_6_' + c, value: 'value ' + c } );
         }
         var viewModel = { 
             observableArray: ko.observableArray(array),
@@ -362,7 +363,7 @@
         var viewModel5 = { 
             currentItems: ko.observableArray(),
             totalItems: ko.observable(100),
-            pageSize: ko.observable(25)
+            pageSize: ko.observable(10)
         };
         viewModel5.serverMethod = function (itemsPerPage, page){
                 var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
@@ -382,6 +383,49 @@
         test("user can still change page size", function () {
             viewModel5.serverMethod.pager.itemsPerPage(10);
             QUnit.equal($('#testBinding5').find('tbody').children('tr').length, 10, "pageSize");
+        });
+        
+        
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+        module("pagingForeach binding - All");
+        
+        var viewModel6 = { 
+            observableArray: ko.observableArray(array6),
+            pageSize: ko.observable(10)
+        };
+        ko.applyBindings(viewModel6, $('#testBinding6')[0]);
+               
+        test("pageSize binding adds All rows", function () {
+            QUnit.equal($('#testBinding6').find('select').children('option').length, 5, "pageSize options");
+            QUnit.equal($('#testBinding6').find('select').children('option').last().text(), 'All', "pageSize - All");
+        });
+        
+        
+        
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+        module("pagingForeach binding - All - serverMethod");
+        
+        var viewModel7 = { 
+            currentItems: ko.observableArray(),
+            totalItems: ko.observable(200),
+            pageSize: ko.observable(10)
+        };
+        viewModel7.serverMethod = function (itemsPerPage, page){
+                var indexOfFirstItemOnCurrentPage = ((page - 1) * itemsPerPage);
+                var pageArray = [];
+                for(var c = indexOfFirstItemOnCurrentPage; c < indexOfFirstItemOnCurrentPage + itemsPerPage; c++) {
+                    pageArray.push( { key: 'key_7_' + c, value: 'value ' + c } );
+                }
+                viewModel7.currentItems(pageArray);
+                return pageArray;
+            };
+        ko.applyBindings(viewModel7, $('#testBinding7')[0]);
+        
+        viewModel7.pageSize(10);
+               
+        test("pageSize binding adds All rows", function () {
+            QUnit.equal($('#testBinding7').find('select').children('option').length, 5, "pageSize options");
+            QUnit.equal($('#testBinding7').find('select').children('option').last().text(), 'All', "pageSize - All");
         });
         
         

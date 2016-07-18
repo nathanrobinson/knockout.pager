@@ -1,0 +1,133 @@
+
+            .bindingDiv { 
+                margin: 10px;
+                display: inline-block; 
+                border: 1px solid #012;
+                border-radius: 3px;
+                -moz-box-shadow: 5px 5px 3px #888;
+                -webkit-box-shadow: 5px 5px 3px #888;
+                box-shadow: 5px 5px 3px #888;
+                float: left;
+            }
+            .bindingDiv .pager a { text-decoration: none; } 
+            .bindingDiv table { border-collapse: collapse; margin: auto; width: 100%;}
+            #testBinding thead tr {
+                color: white;
+                background: #69c; /* Old browsers */
+background: -moz-linear-gradient(top, #69c 20%, #369 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#69c), color-stop(90%,#369)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #69c 20%,#369 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #69c 20%,#369 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #69c 20%,#369 90%); /* IE10+ */
+background: linear-gradient(to bottom, #69c 20%,#369 90%); /* W3C */
+            }
+            #testBinding tbody tr:nth-child(odd) { background: #abc; }
+            
+            #testBinding2 {
+                border: 1px solid #021;
+                }
+            #testBinding2 thead tr {
+                color: white;
+                background: #6c9; /* Old browsers */
+background: -moz-linear-gradient(top, #6c9 20%, #396 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#6c9), color-stop(90%,#396)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #6c9 20%,#396 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #6c9 20%,#396 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #6c9 20%,#396 90%); /* IE10+ */
+background: linear-gradient(to bottom, #6c9 20%,#396 90%); /* W3C */
+            }
+            #testBinding2 tbody tr:nth-child(odd) { background: #acb; }
+            
+            #testBinding3 {
+                border: 1px solid #201;
+                }
+            #testBinding3 thead tr {
+                color: white;
+                background: #c69; /* Old browsers */
+background: -moz-linear-gradient(top, #c69 20%, #936 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#c69), color-stop(90%,#936)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #c69 20%,#936 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #c69 20%,#936 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #c69 20%,#936 90%); /* IE10+ */
+background: linear-gradient(to bottom, #c69 20%,#936 90%); /* W3C */
+            }
+            #testBinding3 tbody tr:nth-child(odd) { background: #cab; }
+            
+            #testBinding4 {
+                border: 1px solid #102;
+                }
+            #testBinding4 thead tr {
+                color: white;
+                background: #9c6; /* Old browsers */
+background: -moz-linear-gradient(top, #9c6 20%, #693 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#9c6), color-stop(90%,#693)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #9c6 20%,#693 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #9c6 20%,#693 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #9c6 20%,#693 90%); /* IE10+ */
+background: linear-gradient(to bottom, #9c6 20%,#693 90%); /* W3C */
+            }
+            #testBinding4 tbody tr:nth-child(odd) { background: #bca; }
+            
+            #testBinding5 {
+                border: 1px solid #120;
+                }
+            #testBinding5 thead tr {
+                color: white;
+                background: #96c; /* Old browsers */
+background: -moz-linear-gradient(top, #96c 20%, #639 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#96c), color-stop(90%,#639)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #96c 20%,#639 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #96c 20%,#639 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #96c 20%,#639 90%); /* IE10+ */
+background: linear-gradient(to bottom, #96c 20%,#639 90%); /* W3C */
+            }
+            #testBinding5 tbody tr:nth-child(odd) { background: #bac; }
+            
+            #testBinding6 {
+                border: 1px solid #001;
+                }
+            #testBinding6 thead tr {
+                color: white;
+                background: #cc9; /* Old browsers */
+background: -moz-linear-gradient(top, #cc9 20%, #996 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#cc9), color-stop(90%,#996)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #cc9 20%,#996 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #cc9 20%,#996 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #cc9 20%,#996 90%); /* IE10+ */
+background: linear-gradient(to bottom, #cc9 20%,#996 90%); /* W3C */
+            }
+            #testBinding6 tbody tr:nth-child(odd) { background: #ccb; }
+            
+            #testBinding7 {
+                border: 1px solid #020;
+                }
+            #testBinding7 thead tr {
+                color: white;
+                background: #c6c; /* Old browsers */
+background: -moz-linear-gradient(top, #c6c 20%, #939 90%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#c6c), color-stop(90%,#939)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #c6c 20%,#939 90%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #c6c 20%,#939 90%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #c6c 20%,#939 90%); /* IE10+ */
+background: linear-gradient(to bottom, #c6c 20%,#939 90%); /* W3C */
+            }
+            #testBinding7 tbody tr:nth-child(odd) { background: #cac; }
+            
+            .bindingDiv tbody tr > td {
+                padding: 0 3px;
+                text-align: center;
+            }
+            
+            .bindingDiv tbody tr:nth-child(odd) > td {
+                border: 2px solid white;
+                border-top: 0;
+                border-bottom: 0;
+            }
+            .bindingDiv tbody tr:nth-child(odd) > td:first-child {
+                border-left: 0;
+            }
+            .bindingDiv tbody tr:nth-child(odd) > td:last-child {
+                border-right: 0;
+            }
+            
+            .clear { clear: both; }
